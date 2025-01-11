@@ -23,10 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ShoppingCart\CheckoutShoppingCart\" />
-    <Folder Include="ShoppingCart\DeleteShoppingCart\" />
-    <Folder Include="ShoppingCart\GetShoppingCart\" />
-    <Folder Include="ShoppingCart\StoreShoppingCart\" />
+    <Folder Include="Pipelines\Command\CheckoutShoppingCart\" />
   </ItemGroup>
 
 </Project>

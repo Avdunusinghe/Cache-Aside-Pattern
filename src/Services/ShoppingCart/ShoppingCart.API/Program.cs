@@ -1,6 +1,5 @@
 using BuildingBlocks.Behaviors;
 using FluentValidation;
-using ShoppingCart.API.Data;
 using ShoppingCart.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
