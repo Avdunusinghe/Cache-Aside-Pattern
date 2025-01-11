@@ -7,7 +7,7 @@
     {
         public async Task<ResultDTO> Handle(DeleteShoppingCartCommand request, CancellationToken cancellationToken)
         {
-            await shoppingCartRepository.DeleteShoppingCart(request.UserName, cancellationToken);
+            await shoppingCartRepository.DeleteShoppingCartAsync(request.UserName, cancellationToken);
 
             return ResultDTO.Success("Shopping Cart Has Been Deleted Successfully");
         }

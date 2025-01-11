@@ -9,7 +9,7 @@ namespace ShoppingCart.API.Pipelines.Query.GetShoppingCart
     {
         public async Task<ShoppingCartContainer> Handle(GetShoppingCartQuery request, CancellationToken cancellationToken)
         {
-            var shoppingCart = await shoppingCartRepository.GetShoppingCart(request.UserName);
+            var shoppingCart = await shoppingCartRepository.GetShoppingCartAsync(request.UserName);
 
             return shoppingCart;
         }

@@ -8,29 +8,29 @@ namespace ShoppingCart.API.Data
         (IShoppingCartRepository repository,
         IDistributedCache cache) : IShoppingCartRepository
     {
-        public async Task<ShoppingCartContainer> GetShoppingCart(string userName, CancellationToken cancellationToken = default)
+        public async Task<ShoppingCartContainer> GetShoppingCartAsync(string userName, CancellationToken cancellationToken = default)
         {
             var cachedShoppingCart = await cache.GetStringAsync(userName, cancellationToken);
             if (!string.IsNullOrEmpty(cachedShoppingCart))
                 return JsonSerializer.Deserialize<ShoppingCartContainer>(cachedShoppingCart)!;
 
-            var shoppingCart = await repository.GetShoppingCart(userName, cancellationToken);
+            var shoppingCart = await repository.GetShoppingCartAsync(userName, cancellationToken);
             await cache.SetStringAsync(userName, JsonSerializer.Serialize(shoppingCart), cancellationToken);
             return shoppingCart;
         }
 
-        public async Task<ShoppingCartContainer> StoreShoppingCart(ShoppingCartContainer shoppingCart, CancellationToken cancellationToken = default)
+        public async Task<ShoppingCartContainer> StoreShoppingCartAsync(ShoppingCartContainer shoppingCart, CancellationToken cancellationToken = default)
         {
-            await repository.StoreShoppingCart(shoppingCart, cancellationToken);
+            await repository.StoreShoppingCartAsync(shoppingCart, cancellationToken);
 
             await cache.SetStringAsync(shoppingCart.UserName, JsonSerializer.Serialize(shoppingCart), cancellationToken);
 
             return shoppingCart;
         }
 
-        public async Task<bool> DeleteShoppingCart(string userName, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteShoppingCartAsync(string userName, CancellationToken cancellationToken = default)
         {
-            await repository.DeleteShoppingCart(userName, cancellationToken);
+            await repository.DeleteShoppingCartAsync(userName, cancellationToken);
 
             await cache.RemoveAsync(userName, cancellationToken);
 

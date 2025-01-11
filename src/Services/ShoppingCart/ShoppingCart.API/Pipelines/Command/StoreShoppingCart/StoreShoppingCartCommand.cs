@@ -9,7 +9,7 @@ namespace ShoppingCart.API.Pipelines.Command.StoreShoppingCart
     {
         public async Task<ResultDTO> Handle(StoreShoppingCartCommand request, CancellationToken cancellationToken)
         {
-            await shoppingCartRepository.StoreShoppingCart(request.ShoppingCartContainer, cancellationToken);
+            await shoppingCartRepository.StoreShoppingCartAsync(request.ShoppingCartContainer, cancellationToken);
 
             return ResultDTO.Success("Shpping Cart Successfully Stored.");
         }

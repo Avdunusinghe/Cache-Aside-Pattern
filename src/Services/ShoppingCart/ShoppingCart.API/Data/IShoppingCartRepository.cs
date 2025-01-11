@@ -4,13 +4,13 @@ namespace ShoppingCart.API.Data
 {
     public interface IShoppingCartRepository
     {
-        Task<ShoppingCartContainer> GetShoppingCart(
+        Task<ShoppingCartContainer> GetShoppingCartAsync(
             string userName,
             CancellationToken cancellationToken = default);
-        Task<ShoppingCartContainer> StoreShoppingCart(
+        Task<ShoppingCartContainer> StoreShoppingCartAsync(
             ShoppingCartContainer shoppingCart,
             CancellationToken cancellationToken = default);
-        Task<bool> DeleteShoppingCart(
+        Task<bool> DeleteShoppingCartAsync(
             string userName,
             CancellationToken cancellationToken = default);
     }
