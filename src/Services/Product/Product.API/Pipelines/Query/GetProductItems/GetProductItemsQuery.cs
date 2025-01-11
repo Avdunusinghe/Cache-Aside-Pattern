@@ -1,6 +1,4 @@
-﻿using Mapster;
-using MediatR;
-using Product.API.DTOs;
+﻿
 
 namespace Product.API.Pipelines.Query.GetProductItems
 {
