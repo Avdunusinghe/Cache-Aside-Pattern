@@ -2,6 +2,12 @@ services:
   productdb:
     image: mongo
 
+  shoppingCartdb:
+    image: postgres
+ 
+  distributedShoppingCartcache:
+    image: redis
+
   product.api:
     image: ${DOCKER_REGISTRY-}productapi
     build:
@@ -16,4 +22,5 @@ services:
 
 volumes:
       mongo_productdb:
+      postgres_shoppingCartdb:
 
