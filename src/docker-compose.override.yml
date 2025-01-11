@@ -1,15 +1,28 @@
 services:
+  productdb:
+     container_name: productdb
+     restart: always
+     ports:
+      - "27017:27017"
+     volumes:
+      - mongo_productdb:/data/db
+
   product.api:
+    container_name: product.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
+      - "ConnectionStrings__DefaultConnection=mongodb://productdb:27017"
+    depends_on:
+      - productdb
     ports:
-      - "8080"
-      - "8081"
+      - "8000:8080"
+      - "8050:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
   shoppingcart.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

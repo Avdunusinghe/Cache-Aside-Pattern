@@ -13,6 +13,7 @@ services:
     build:
       context: .
       dockerfile: Services/ShoppingCart/ShoppingCart.API/Dockerfile
+
 volumes:
       mongo_productdb:
 

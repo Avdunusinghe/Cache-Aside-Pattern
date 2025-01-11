@@ -1,5 +1,4 @@
 ﻿using MongoDB.Driver;
-using Product.API.Entities;
 
 namespace Product.API.Data
 {
@@ -10,6 +9,8 @@ namespace Product.API.Data
             var client = new MongoClient(configuration.GetValue<string>("ConnectionStrings:DefaultConnection"));
             var database = client.GetDatabase(configuration.GetValue<string>("DatabaseSettings:DatabaseName"));
             ProductItems = database.GetCollection<ProductItem>(configuration.GetValue<string>("DatabaseSettings:CollectionName"));
+
+            ProductItemContextSeed.SeedData(ProductItems);
         }
         public IMongoCollection<ProductItem> ProductItems { get; }
     }
