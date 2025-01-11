@@ -7,7 +7,7 @@
     {
         public async Task<List<ProductItemDTO>> Handle(GetProductByCategoryQuery request, CancellationToken cancellationToken)
         {
-            var products = await productItemRepository.GetProductByCategory(request.category);
+            var products = await productItemRepository.GetProductByCategoryAsync(request.category);
 
             return products.Adapt<List<ProductItemDTO>>();
         }

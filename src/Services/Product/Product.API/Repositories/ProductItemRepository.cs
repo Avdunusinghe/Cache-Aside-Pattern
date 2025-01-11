@@ -1,6 +1,4 @@
 ﻿using MongoDB.Driver;
-using Product.API.Data;
-using Product.API.Entities;
 
 namespace Product.API.Repositories
 {
@@ -12,14 +10,14 @@ namespace Product.API.Repositories
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public async Task<IEnumerable<ProductItem>> GetProducts()
+        public async Task<IEnumerable<ProductItem>> GetProductsAsync()
         {
             return await _context
                             .ProductItems
                             .Find(p => true)
                             .ToListAsync();
         }
-        public async Task<ProductItem> GetProduct(string id)
+        public async Task<ProductItem> GetProductAsync(string id)
         {
             return await _context
                            .ProductItems
@@ -27,7 +25,7 @@ namespace Product.API.Repositories
                            .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<ProductItem>> GetProductByName(string name)
+        public async Task<IEnumerable<ProductItem>> GetProductByNameAsync(string name)
         {
             FilterDefinition<ProductItem> filter = Builders<ProductItem>.Filter.Eq(p => p.Name, name);
 
@@ -37,7 +35,7 @@ namespace Product.API.Repositories
                             .ToListAsync();
         }
 
-        public async Task<IEnumerable<ProductItem>> GetProductByCategory(string categoryName)
+        public async Task<IEnumerable<ProductItem>> GetProductByCategoryAsync(string categoryName)
         {
             FilterDefinition<ProductItem> filter = Builders<ProductItem>.Filter.Eq(p => p.Category, categoryName);
 
@@ -47,12 +45,12 @@ namespace Product.API.Repositories
                             .ToListAsync();
         }
 
-        public async Task CreateProduct(ProductItem product)
+        public async Task CreateProductAsync(ProductItem product)
         {
             await _context.ProductItems.InsertOneAsync(product);
         }
 
-        public async Task<bool> UpdateProduct(ProductItem product)
+        public async Task<bool> UpdateProductAsync(ProductItem product)
         {
             var updateResult = await _context
                                         .ProductItems
@@ -62,7 +60,7 @@ namespace Product.API.Repositories
                     && updateResult.ModifiedCount > 0;
         }
 
-        public async Task<bool> DeleteProduct(string id)
+        public async Task<bool> DeleteProductAsync(string id)
         {
             FilterDefinition<ProductItem> filter = Builders<ProductItem>.Filter.Eq(p => p.Id, id);
 

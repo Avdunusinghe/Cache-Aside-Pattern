@@ -10,11 +10,11 @@ namespace Product.API.Pipelines.Query.GetProductItemById
 
         public async Task<ProductItemDTO> Handle(GetProductItemByIdQuery request, CancellationToken cancellationToken)
         {
-            var product = await productItemRepository.GetProduct(request.Id);
+            var product = await productItemRepository.GetProductAsync(request.Id);
 
             if (product is null)
             {
-                throw new ProductNotFoundException(request.Id);
+                throw new ProductItemNotFoundException(request.Id);
             }
 
             return product.Adapt<ProductItemDTO>();

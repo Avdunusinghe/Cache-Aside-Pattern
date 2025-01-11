@@ -10,7 +10,7 @@
         {
             var product = request.ProductItemDTO.Adapt<ProductItem>();
 
-            await productItemRepository.UpdateProduct(product);
+            await productItemRepository.UpdateProductAsync(product);
 
             return ResultDTO.Success("Product has been updated successfully.", product.Id);
         }

@@ -10,14 +10,14 @@ namespace Product.API.Pipelines.Command.DeleteProductItem
 
         public async Task<ResultDTO> Handle(DeleteProductItemCommand request, CancellationToken cancellationToken)
         {
-            var product = await _productItemRepository.GetProduct(request.id);
+            var product = await _productItemRepository.GetProductAsync(request.id);
 
             if (product is null)
             {
-                throw new ProductNotFoundException(request.id);
+                throw new ProductItemNotFoundException(request.id);
             }
 
-            await _productItemRepository.DeleteProduct(request.id);
+            await _productItemRepository.DeleteProductAsync(request.id);
 
             return ResultDTO.Success("Product has been deleted successfully.", product.Id);
         }

@@ -1,16 +1,14 @@
-﻿using Product.API.Entities;
-
-namespace Product.API.Repositories
+﻿namespace Product.API.Repositories
 {
     public interface IProductItemRepository
     {
-        Task<IEnumerable<ProductItem>> GetProducts();
-        Task<ProductItem> GetProduct(string id);
-        Task<IEnumerable<ProductItem>> GetProductByName(string name);
-        Task<IEnumerable<ProductItem>> GetProductByCategory(string categoryName);
+        Task<IEnumerable<ProductItem>> GetProductsAsync();
+        Task<ProductItem> GetProductAsync(string id);
+        Task<IEnumerable<ProductItem>> GetProductByNameAsync(string name);
+        Task<IEnumerable<ProductItem>> GetProductByCategoryAsync(string categoryName);
 
-        Task CreateProduct(ProductItem product);
-        Task<bool> UpdateProduct(ProductItem product);
-        Task<bool> DeleteProduct(string id);
+        Task CreateProductAsync(ProductItem product);
+        Task<bool> UpdateProductAsync(ProductItem product);
+        Task<bool> DeleteProductAsync(string id);
     }
 }

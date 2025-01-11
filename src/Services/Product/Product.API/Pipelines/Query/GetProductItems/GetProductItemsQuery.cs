@@ -10,7 +10,7 @@ namespace Product.API.Pipelines.Query.GetProductItems
 
         public async Task<List<ProductItemDTO>> Handle(GetProductItemsQuery request, CancellationToken cancellationToken)
         {
-            var products = await productItemRepository.GetProducts();
+            var products = await productItemRepository.GetProductsAsync();
 
             return products.Adapt<List<ProductItemDTO>>();
         }

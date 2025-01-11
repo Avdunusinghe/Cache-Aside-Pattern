@@ -9,7 +9,7 @@
         public async Task<ResultDTO> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = request.ProductItemDTO.Adapt<ProductItem>();
-            await productItemRepository.CreateProduct(product);
+            await productItemRepository.CreateProductAsync(product);
 
             return ResultDTO.Success("Product has been added successfully.", product.Id);
         }
