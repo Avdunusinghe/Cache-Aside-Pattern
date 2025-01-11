@@ -1,0 +1,18 @@
+services:
+  productdb:
+    image: mongo
+
+  product.api:
+    image: ${DOCKER_REGISTRY-}productapi
+    build:
+      context: .
+      dockerfile: Services/Product/Product.API/Dockerfile
+
+  shoppingcart.api:
+    image: ${DOCKER_REGISTRY-}shoppingcartapi
+    build:
+      context: .
+      dockerfile: Services/ShoppingCart/ShoppingCart.API/Dockerfile
+volumes:
+      mongo_productdb:
+
